@@ -51,6 +51,11 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
     });
   };
 
+  // ✅ Ajout : fonction reset
+  const handleReset = () => {
+    setValues({});
+  };
+
   const result = Object.keys(values).reduce((acc: number, itemName: string) => {
     return acc + values[itemName].kcal;
   }, 0);
@@ -77,20 +82,37 @@ export const CalculatorPage: React.FC<Props> = (props: Props) => {
               ))}
             </div>
           </div>
+
+          {/* ✅ Zone de boutons */}
           <div className={classes.buttonContainer}>
-            <Button variant="contained" onClick={sendData(result)}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => sendData(result)}
+              style={{ marginRight: 10 }}
+            >
               {result} Kcal
+            </Button>
+            <Button
+              variant="outlined"
+              color="secondary"
+              onClick={handleReset}
+            >
+              Reset
             </Button>
           </div>
         </div>
+
         <div className={classes.lateralBar}>
           <div className={classes.barSpacer} />
           <img src={kanjiRight} alt="kanji" />
         </div>
       </div>
+
       <div className={classes.circleContainer}>
         <div className={classes.redCircle} />
       </div>
+
       <img className={classes.kanjiSun} src={kanjiSun} alt="kanji sun" />
       <img className={classes.kanjiBook} src={kanjiBook} alt="kanji book" />
     </div>
@@ -180,8 +202,7 @@ const styles = (theme: CustomTheme): Record<ClassNames, CSSProperties> => ({
   buttonContainer: {
     display: "flex",
     justifyContent: "center",
-    minHeight: 36,
-    flex: 1,
+    gap: theme.spacing(2),
     marginBottom: theme.spacing(3),
     marginTop: theme.spacing(3),
   },

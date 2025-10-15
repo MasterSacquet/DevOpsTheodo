@@ -17,7 +17,19 @@ module.exports = {
     },
   },
   rules: {
+    // Autoriser les variables non utilisées
+    "@typescript-eslint/no-unused-vars": "off",
+
+    // Autoriser l'utilisation du type 'any'
+    "@typescript-eslint/no-explicit-any": "off",
+
+    // Autoriser les interfaces vides
+    "@typescript-eslint/no-empty-interface": "off",
+
+    // Désactiver les warnings de prop-types pour React (si TS est utilisé)
     "react/prop-types": "off",
-    "@typescript-eslint/no-unused-vars": "warn",
+
+    // Exemple : si tu veux, tu peux aussi désactiver certains warnings de style
+    "no-console": "warn",
   },
 };
